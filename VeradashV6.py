@@ -13,7 +13,7 @@ warnings.filterwarnings('ignore')
 
 # --- Professional Configuration ---
 st.set_page_config(
-    page_title="Vera Capital Markets",
+    page_title="Apex Dashboard",
     page_icon="💼",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -712,7 +712,7 @@ def main():
             background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%); 
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;">
-            VERA CAPITAL MARKETS
+            APEX DASHBOARD
         </h1>
         <div class="subtitle" style="font-family: 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif; 
              font-weight: 500; font-size: 1.2rem; letter-spacing: 0.01em; margin: 0.5rem 0; 
@@ -1183,7 +1183,7 @@ def main():
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: var(--text-secondary); padding: 2rem;">
-        <p><strong>💼 Vera Capital Markets</strong> - Institutional-Grade Financial Analytics</p>
+        <p><strong>💼 Apex Dashboard</strong> - Institutional-Grade Financial Analytics</p>
         <p>Professional Trading Intelligence • Real-time Market Data • Advanced Analytics</p>
     </div>
     """, unsafe_allow_html=True)

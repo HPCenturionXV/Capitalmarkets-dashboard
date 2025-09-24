@@ -1,4 +1,4 @@
-# Vera Capital Markets Dashboard
+# Apex Dashboard
 
 A professional-grade financial analytics platform built with Streamlit, featuring real-time market data, technical analysis, and institutional-grade visualizations.
 
