@@ -19,6 +19,11 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Add mobile viewport meta tag
+st.markdown("""
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+""", unsafe_allow_html=True)
+
 # --- Enhanced Professional Styling ---
 st.markdown("""
 <style>
@@ -363,10 +368,95 @@ st.markdown("""
         justify-content: center;
         border-radius: 0.75rem;
     }
+    
+    /* Mobile Responsive Design */
+    @media (max-width: 768px) {
+        .institutional-header h1 {
+            font-size: 2rem !important;
+        }
+        
+        .institutional-header .subtitle {
+            font-size: 1rem !important;
+        }
+        
+        .institutional-header .tagline {
+            font-size: 0.8rem !important;
+        }
+        
+        .metric-professional .metric-value {
+            font-size: 1.5rem !important;
+        }
+        
+        .institutional-card {
+            padding: 1rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.5rem 1rem !important;
+            font-size: 0.8rem !important;
+        }
+        
+        .stButton > button {
+            padding: 0.5rem 1rem !important;
+            font-size: 0.8rem !important;
+        }
+        
+        /* Stack columns on mobile */
+        .stColumns > div {
+            margin-bottom: 1rem;
+        }
+        
+        /* Reduce chart height on mobile */
+        .js-plotly-plot {
+            height: 300px !important;
+        }
+        
+        /* Mobile-friendly text sizes */
+        .section-title {
+            font-size: 1.2rem !important;
+        }
+        
+        /* Hide some elements on very small screens */
+        @media (max-width: 480px) {
+            .institutional-header h1 {
+                font-size: 1.5rem !important;
+            }
+            
+            .metric-professional .metric-value {
+                font-size: 1.2rem !important;
+            }
+        }
+    }
+    
+    /* Touch-friendly buttons */
+    @media (hover: none) and (pointer: coarse) {
+        .stButton > button {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            min-height: 44px;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
 # --- Professional Helper Functions ---
+def get_market_indices():
+    """Get market indices - full set for desktop"""
+    return {
+        'S&P 500': '^GSPC',
+        'Dow Jones': '^DJI', 
+        'NASDAQ': '^IXIC',
+        'VIX': '^VIX'
+    }
+
+def get_movers_stocks():
+    """Get stock list - full set for desktop"""
+    return ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'NVDA', 'META', 'JPM']
+
 def get_demo_market_data():
     """Return demo market data when API is unavailable"""
     return {
@@ -412,13 +502,8 @@ def get_demo_market_data():
 def fetch_institutional_data():
     """Fetch institutional-grade market data with rate limiting"""
     try:
-        # Reduced indices to avoid rate limiting
-        indices = {
-            'S&P 500': '^GSPC',
-            'Dow Jones': '^DJI', 
-            'NASDAQ': '^IXIC',
-            'VIX': '^VIX'
-        }
+        # Get indices based on device type
+        indices = get_market_indices()
         
         data = {}
         for i, (name, ticker) in enumerate(indices.items()):
@@ -471,10 +556,8 @@ def fetch_institutional_movers():
             'losers': []
         }
         
-        # Reduced number of stocks to avoid rate limiting
-        institutional_stocks = [
-            'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'NVDA', 'META', 'JPM'
-        ]
+        # Get stocks based on device type
+        institutional_stocks = get_movers_stocks()
         
         for i, ticker in enumerate(institutional_stocks):
             try:
@@ -752,7 +835,7 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # Professional Controls Row
+    # Professional Controls Row - Mobile responsive
     col1, col2, col3, col4 = st.columns([2, 2, 2, 1])
     
     with col1:
